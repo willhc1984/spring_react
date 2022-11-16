@@ -23,6 +23,14 @@ public class ProdutoService {
 		return produtoRepository.findById(id);
 	}
 	
+	public ProdutoModel salvar(ProdutoModel produtoModel) {
+		return produtoRepository.save(produtoModel);
+	}
+	
+	public ProdutoModel atualizar(ProdutoModel produtoModel) {
+		return produtoRepository.save(produtoModel);
+	}
+	
 
 
 }
