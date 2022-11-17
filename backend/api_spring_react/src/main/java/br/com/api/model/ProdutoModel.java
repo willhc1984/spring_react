@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_produto")
@@ -19,7 +20,9 @@ public class ProdutoModel implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String marca;
 	
 	public ProdutoModel() {

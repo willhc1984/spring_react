@@ -3,6 +3,8 @@ package br.com.api.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +44,7 @@ public class ProdutoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> salvar(@RequestBody ProdutoModel produtoModel){
+	public ResponseEntity<?> salvar(@Valid @RequestBody ProdutoModel produtoModel){
 		return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.salvar(produtoModel));
 	}
 	
