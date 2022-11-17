@@ -31,6 +31,9 @@ public class ProdutoService {
 		return produtoRepository.save(produtoModel);
 	}
 	
+	public void deletar(ProdutoModel produtoModel) {
+		produtoRepository.delete(produtoModel);
+	}
 
 
 }
