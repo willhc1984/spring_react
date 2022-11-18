@@ -51,6 +51,46 @@ function App() {
     })
   }
 
+  // Aterar produto
+  const alterar = () => {
+    fetch('http://localhost:8080/produtos/' + objProduto.id, {
+      method: 'put',
+      body: JSON.stringify(objProduto),
+      headers: {
+        'Content-type':'application/json',
+        'Accept':'application/json'
+      }
+    })
+    .then(retorno => retorno.json())
+    .then(retorno_convertido => {
+      console.log(retorno_convertido);
+      if(retorno_convertido.error !== undefined){
+        alert("Dados inválidos! Digite corretamente.")
+      }else{
+
+        // Mensagem
+        alert('Produto alterado!');
+
+        //Copia do vetor de produtos
+        let vetorTemp = [...produtos];
+
+        //Indice
+        let indice = vetorTemp.findIndex((p) => {
+          return p.id === objProduto.id;
+        });
+
+        // Alterar produto do vetor temp
+        vetorTemp[indice] = objProduto;
+
+        //Atualizar vetor de produtos
+        setProdutos(vetorTemp);
+
+        // Limpar formulario
+        limparFormulario();
+      }
+    })
+  }
+
   // Remover produto
   const remover = () => {
     fetch('http://localhost:8080/produtos/' + objProduto.id, {
@@ -100,7 +140,7 @@ function App() {
   // Retorno
   return (
     <div>
-      <Formulario botao={btnCadastrar} eventoTeclado = {aoDigitar} cadastrar = {cadastrar} obj={objProduto} cancelar={limparFormulario} remover={remover} />
+      <Formulario botao={btnCadastrar} eventoTeclado = {aoDigitar} cadastrar = {cadastrar} obj={objProduto} cancelar={limparFormulario} remover={remover} alterar={alterar} />
       <Tabela vetor={produtos} selecionar={selecionarProduto} />
     </div>
   );
